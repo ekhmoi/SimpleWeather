@@ -84,6 +84,11 @@ export class HomePage {
     this.current.temperature = `${res.main.temp > 0 ? '+' + res.main.temp : res.main.temp}°`;
     this.current.type = `${res.weather[0].main}`;
     this.current.bg = res.weather[0].icon;
+    this.current.icon = this.getIconName(res.weather[0].icon);
+    this.current.wind = res.wind.speed;
+    this.current.humidity = res.main.humidity;
+    this.current.sunset = new Date(res.sys.sunset * 1000).toString().split(' ')[4];
+    this.current.sunrise = new Date(res.sys.sunrise * 1000).toString().split(' ')[4];
   }
 
   private processLocation(res: any): void {

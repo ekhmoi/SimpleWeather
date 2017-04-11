@@ -6,17 +6,26 @@ page-home {
 
     ion-content {
         // background: url(http://www.777a7.com/img2/injqssxfjmcnxmmswajl.jpg);
-        background-size: auto 75%;
+        background-size: 100% 67%;
         background-repeat: no-repeat;
     }
 
     ion-grid.current-details {
         height: 100%;
         padding: 0px;
+        ion-col {
+            margin: 0px;
+        }
         h1 {
             text-align: center;
             color: white;
             font-weight: 100;
+        }
+
+        .current-more {
+            text-align: center;
+            color: white;
+            background: rgba(0,0,0,0.35);
         }
 
         h1.current-temp {

@@ -1,22 +1,32 @@
-<ion-header no-border>
-  <ion-navbar color="transparent">
-    <ion-title color="light">
-      <span [ngStyle]="{'color': headerColor}">{{current.city}}</span>
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only  [color]="current.bg.indexOf('d') > -1 ? 'dark' : 'light'">
-        <ion-icon name="settings"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
 <ion-content [ngStyle]="{'background-image': 'url(assets/bgs/' + current.bg + '.png)'}">
   <ion-grid class="current-details" ion-fixed>
 
     <ion-row height-66 align-items-center>
       <ion-col align-self-center *ngIf="forecasts[currentForecast].items.length > 0">
-        <h1 class="current-temp" color="white">{{current.temperature}}</h1>
+        <h1 class="current-temp" color="white">{{current.temperature}} <ion-icon [name]="current.icon"></ion-icon></h1>
+        <ion-row class="current-more">
+          <ion-col>
+            {{current.city}}
+          </ion-col>
+        </ion-row>
+        <ion-row class="current-more">
+          <ion-col col-3>
+            humidity <br><br>
+            {{current.humidity}} %
+          </ion-col>
+          <ion-col col-3>
+            wind <br><br>
+            {{current.wind}} m/s
+          </ion-col>
+          <ion-col col-3>
+            sunrise <br><br>
+            {{current.sunrise}}
+          </ion-col>
+          <ion-col col-3>
+            sunset <br><br>
+            {{current.sunset}}
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
 
