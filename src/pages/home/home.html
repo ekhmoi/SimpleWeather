@@ -1,0 +1,46 @@
+<ion-header no-border>
+  <ion-navbar color="transparent">
+    <ion-title color="light">
+      <span [ngStyle]="{'color': headerColor}">{{current.city}}</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only  [color]="current.bg.indexOf('d') > -1 ? 'dark' : 'light'">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'background-image': 'url(assets/bgs/' + current.bg + '.png)'}">
+  <ion-grid class="current-details" ion-fixed>
+
+    <ion-row height-66 align-items-center>
+      <ion-col align-self-center *ngIf="forecasts[currentForecast].items.length > 0">
+        <h1 class="current-temp" color="white">{{current.temperature}}</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row height-33 align-items-center class="forecast" [ngStyle]="{'background': foreCastBG}">
+
+      <ion-col align-self-center col-12 *ngIf="forecasts[currentForecast].items.length > 0">      
+        <button ion-button icon-right color="light" clear  block (click)="onClickCurrentForecast()">{{forecasts[currentForecast].text}} <ion-icon name="md-arrow-dropdown"></ion-icon></button>
+      </ion-col>
+
+      <ion-col col-12 *ngIf="forecasts[currentForecast].items.length > 0">
+        <ion-row align-items-center>
+          <ion-scroll scrollX="true" class="upcoming-details">
+            <ion-col  col-3 *ngFor="let n of forecasts[currentForecast].items" class="each-forecast">
+                <ion-row><ion-col>{{n.time}}</ion-col></ion-row>
+                <ion-row><ion-col><ion-icon color="light" [name]="n.icon"></ion-icon></ion-col></ion-row>
+                <ion-row><ion-col>{{n.temperature}}°</ion-col></ion-row>
+            </ion-col>
+          </ion-scroll>
+        </ion-row>
+        
+      </ion-col>
+      <ion-col *ngIf="forecasts[currentForecast].items.length === 0">
+        <h2 color="light">Getting Weather <ion-spinner color="light"></ion-spinner></h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
